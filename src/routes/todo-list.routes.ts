@@ -1,11 +1,11 @@
-import { Router } from 'express'
-import TodoController from '../controllers/todo-list.controller'
+import { Router } from "express";
+import TodoController from "../controllers/todo-list.controller";
 
-const router = Router()
+const router = Router();
 
-router.get('/', TodoController.get)
-router.post('/', TodoController.create)
-router.patch('/:id', TodoController.update)
-router.delete('/:id', TodoController.remove)
+router.get("/", TodoController.get);
+router.post("/", TodoController.create);
+router.patch("/:id", TodoController.update);
+router.delete("/:id", TodoController.remove);
 
-export default router
+export default router;

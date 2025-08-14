@@ -1,31 +1,31 @@
-import TodoRepository from '../repository/todo-list.schema'
+import TodoRepository from "../repository/todo-list.schema";
 
 interface CreateTodoDTO {
-  title: string
-  description: string
-  done: boolean
+  title: string;
+  description: string;
+  done: boolean;
 }
 
 class TodoServices {
   async getAll() {
-    return TodoRepository.findAll()
+    return TodoRepository.findAll();
   }
   async getById(id: string) {
-    return TodoRepository.findById(id)
+    return TodoRepository.findById(id);
   }
   async create(createDTO: CreateTodoDTO) {
-    return TodoRepository.create(createDTO)
+    return TodoRepository.create(createDTO);
   }
 
   async update(_id: string, updateDTO: Partial<CreateTodoDTO>) {
-    return TodoRepository.update(_id, updateDTO)
+    return TodoRepository.update(_id, updateDTO);
   }
 
   async remove(id: string) {
-    return TodoRepository.delete(id)
+    return TodoRepository.delete(id);
   }
 }
 
-const todoService = new TodoServices()
+const todoService = new TodoServices();
 
-export default todoService
+export default todoService;
