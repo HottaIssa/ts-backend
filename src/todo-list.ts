@@ -1,27 +1,27 @@
-import TodoListModel, { type TTodoList } from './todoList'
+import TodoListModel, { type TTodoList } from "./todoList";
 
 export async function listItems() {
-  return await TodoListModel.find()
+  return await TodoListModel.find();
 }
 
 export async function createItem(todo: TTodoList) {
-  const addedTodo = new TodoListModel(todo)
+  const addedTodo = new TodoListModel(todo);
 
-  return await addedTodo.save()
+  return await addedTodo.save();
 }
 export async function updateItem(_id: string, todoChanges: Partial<TTodoList>) {
   const updateItem = await TodoListModel.findOneAndUpdate(
     { _id },
     {
-      $set: todoChanges
+      $set: todoChanges,
     },
     {
-      new: true
-    }
-  )
+      new: true,
+    },
+  );
 
-  return updateItem
+  return updateItem;
 }
 export async function removeItem(_id: string) {
-  await TodoListModel.findOneAndDelete({ _id })
+  await TodoListModel.findOneAndDelete({ _id });
 }
