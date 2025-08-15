@@ -1,40 +1,40 @@
-import { Document, model, Schema } from 'mongoose'
+import { Document, model, Schema } from "mongoose";
 
 export type TUser = {
-  email: string
-  password: string
-  name: string
-  active: boolean
-  verified: boolean
-}
+  email: string;
+  password: string;
+  name: string;
+  active: boolean;
+  verified: boolean;
+};
 
 export interface IUser extends TUser, Document {}
 
 const userSchema = new Schema(
   {
     email: {
-      type: String
+      type: String,
     },
     password: {
-      type: String
+      type: String,
     },
     name: {
-      type: String
+      type: String,
     },
     active: {
       type: Boolean,
-      default: true
+      default: true,
     },
     verified: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   {
-    timestamps: true
-  }
-)
+    timestamps: true,
+  },
+);
 
-const User = model('user', userSchema)
+const User = model("user", userSchema);
 
-export default User
+export default User;

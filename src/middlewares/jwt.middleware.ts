@@ -1,21 +1,21 @@
-import { Request, Response, NextFunction } from 'express'
-import { ValidateToken } from '../utils/jwt.util'
+import { Request, Response, NextFunction } from "express";
+import { ValidateToken } from "../utils/jwt.util";
 
 export async function validateToken(
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) {
   try {
-    const header = req.header('Authorization') || ''
-    const token = header.split(' ')[1] || ''
-    const user = (await ValidateToken(token)) as { _id: string }
+    const header = req.header("Authorization") || "";
+    const token = header.split(" ")[1] || "";
+    const user = (await ValidateToken(token)) as { _id: string };
     if (!user._id) {
-      res.status(403).json({ error: 'Usuario no autenticado' })
+      res.status(403).json({ error: "Usuario no autenticado" });
     }
-    req.headers.user_id = user._id
-    next()
+    req.headers.user_id = user._id;
+    next();
   } catch (error) {
-    res.status(403).json({ error: 'Usuario no autenticado', details: error })
+    res.status(403).json({ error: "Usuario no autenticado", details: error });
   }
 }

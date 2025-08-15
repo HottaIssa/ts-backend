@@ -1,49 +1,49 @@
-import TodoModel from '../schemas/todo-list.schema'
+import TodoModel from "../schemas/todo-list.schema";
 
 interface CreateTodoDTO {
-  title: string
-  description: string
-  done: boolean
+  title: string;
+  description: string;
+  done: boolean;
 }
 
 class TodoRepository {
   async findAll(user: string) {
     const result = await TodoModel.find({ user, archived: false }).populate(
-      'user'
-    )
-    return result
+      "user",
+    );
+    return result;
   }
   async create(todo: CreateTodoDTO) {
-    const addedTodo = new TodoModel(todo)
-    return await addedTodo.save()
+    const addedTodo = new TodoModel(todo);
+    return await addedTodo.save();
   }
   async findById(_id: string) {
-    const result = await TodoModel.findOne({ _id, archived: false })
-    return result
+    const result = await TodoModel.findOne({ _id, archived: false });
+    return result;
   }
   async update(_id: string, user: string, todoChanges: Partial<CreateTodoDTO>) {
     const updateItem = await TodoModel.findOneAndUpdate(
       { _id, user },
       {
-        $set: todoChanges
+        $set: todoChanges,
       },
       {
-        new: true
-      }
-    )
+        new: true,
+      },
+    );
 
-    return updateItem
+    return updateItem;
   }
   async delete(_id: string, user: string) {
     await TodoModel.findOneAndUpdate(
       { _id, user },
       {
-        archived: true
-      }
-    )
+        archived: true,
+      },
+    );
   }
 }
 
-const todoRepository = new TodoRepository()
+const todoRepository = new TodoRepository();
 
-export default todoRepository
+export default todoRepository;
