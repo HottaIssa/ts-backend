@@ -15,8 +15,6 @@ class UserController {
     try {
       const { email, password, name } = req.body;
       const user = await UserServices.create({ email, password, name });
-      // envio de correo
-
       res.status(200).json({ data: user });
     } catch (error) {
       res.status(500).json({ error });
